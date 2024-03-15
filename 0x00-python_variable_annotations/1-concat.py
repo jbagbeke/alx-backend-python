@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Concatenation function - type annotations
-"""
+"""()
 
 
 def concat(str1: str, str2: str) -> str:

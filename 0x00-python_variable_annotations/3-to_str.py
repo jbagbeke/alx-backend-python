@@ -8,5 +8,5 @@ def to_str(n: float) -> str:
     """
     Takes a float and returns string representation
     """
-    
+
     return str(n)

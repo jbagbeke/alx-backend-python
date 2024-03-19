@@ -11,9 +11,12 @@ async def wait_n(n: int, max_delay: int) -> list:
     Running coroutines n number of times
     """
     async_list = []
+    sort_tasks = []
 
     for _ in range(n):
-        t = await wait_random(max_delay)
-        async_list.append(float(t))
+        async_list.append(wait_random(max_delay))
+    
+    for task in asyncio.as_completed(async_list):
+        sort_tasks.append(await task)
 
-    return sorted(async_list)
+    return (sort_tasks)

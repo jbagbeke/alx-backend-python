@@ -3,11 +3,11 @@
 Returns an Asyncio.Task of function from task 0
 """
 import asyncio
-from typing import IO
+from typing import Any
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-def task_wait_random(max_delay: int) -> IO:
+def task_wait_random(max_delay: int) -> Any:
     """
     Returns asyncio.Task of wait_random
     """

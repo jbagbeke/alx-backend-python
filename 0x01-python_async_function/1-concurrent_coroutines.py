@@ -15,10 +15,12 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     async_list = []
     sort_tasks = []
 
-    for _ in range(n):
-        async_list.append(wait_random(max_delay))
+    for i in range(n):
+        delay_task = wait_random(max_delay)
+        async_list.append(delay_task)
 
-    for task in asyncio.as_completed(async_list):
-        sort_tasks.append(await task)
+    for task in asyncio.as_completed((async_list)):
+        async_task = await task
+        sort_tasks.append(async_task)
 
     return (sort_tasks)

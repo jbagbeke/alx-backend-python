@@ -53,8 +53,15 @@ class TestMemoize(unittest.TestCase):
     """
     Testing memoize function of utils.py
     """
+    
     def test_memoize(self):
+        """
+        Testing memoize functionality
+        """
         class TestClass:
+            """
+            Test class
+            """
             def a_method(self):
                 return 42
 
@@ -65,9 +72,15 @@ class TestMemoize(unittest.TestCase):
         a_method_mock = patch.object(TestClass, 'a_method')
 
         with a_method_mock as method_mock:
+            method_mock.return_value = 42
+
             test_obj = TestClass()
-            test_obj.a_property
-            test_obj.a_property
+            res_1 = test_obj.a_property
+            res_2 = test_obj.a_property
+            
+            self.assertEqual(res_1, 42)
+            self.assertEqual(res_2, 42)
+
             method_mock.assert_called_once()
 
 

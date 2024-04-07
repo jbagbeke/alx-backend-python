@@ -81,11 +81,11 @@ class TestMemoize(unittest.TestCase):
             method_mock.return_value = 42
 
             test_obj = TestClass()
-            test_obj.a_property
-            test_obj.a_property
+
+            res_1 = test_obj.a_property
+            res_2 = test_obj.a_property
+
+            self.assertEqual(res_1, 42)
+            self.assertEqual(res_2, 42)
 
             method_mock.assert_called_once()
-
-
-if __name__ == '__main__':
-    unittest.main()

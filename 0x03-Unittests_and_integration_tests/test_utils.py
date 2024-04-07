@@ -55,9 +55,6 @@ class TestMemoize(unittest.TestCase):
     """
     def test_memoize(self):
         class TestClass:
-            """
-            Test class
-            """
             def a_method(self):
                 return 42
 
@@ -65,15 +62,13 @@ class TestMemoize(unittest.TestCase):
             def a_property(self):
                 return self.a_method()
 
-        @patch.object(TestClass, 'a_method')
-        def test_function(method_mock):
+        a_method_mock = patch.object(TestClass, 'a_method')
 
+        with a_method_mock as method_mock:
             test_obj = TestClass()
             test_obj.a_property
             test_obj.a_property
-
             method_mock.assert_called_once()
-        test_function()
 
 
 if __name__ == '__main__':

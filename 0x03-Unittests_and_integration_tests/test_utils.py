@@ -54,10 +54,12 @@ class TestMemoize(unittest.TestCase):
         """
         Testing memoize functionality
         """
+
         class TestClass:
             """
             Test class
             """
+
             def a_method(self):
                 """
                 mocked method

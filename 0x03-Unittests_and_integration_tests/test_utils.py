@@ -64,7 +64,6 @@ class TestMemoize(unittest.TestCase):
 
         @patch.object(TestClass, 'a_method')
         def test_function(method_mock):
-            method_mock.return_value = 42
 
             test_obj = TestClass()
             test_obj.a_property

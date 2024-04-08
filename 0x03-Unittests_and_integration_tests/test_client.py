@@ -3,7 +3,6 @@
 GITHUB CLIENT TESTING
 """
 import unittest
-from utils import get_json, access_nested_map, memoize
 from client import GithubOrgClient
 from unittest.mock import patch
 from parameterized import parameterized
@@ -32,3 +31,17 @@ class TestGithubOrgClient(unittest.TestCase):
 
             self.assertEqual(test_client._public_repos_url,
                              "https://api.github.com/repos")
+
+    def test_public_repos(self):
+        with patch('client.get_json') as get_function:
+            get_function.return_value = {"repos_url": "https://api.github.com/repos"}
+            
+            test_client = GithubOrgClient("google")
+            
+            with patch.object(GithubOrgClient, '_public_repos_url',
+                       new="https://api.github.com/repos"):
+                self.assertEqual(test_client._public_repos_url, test_client.org["repos_url"])
+                self.assertEqual(test_client._public_repos_url, test_client.org["repos_url"])
+                self.assertEqual(test_client._public_repos_url, test_client.org["repos_url"])
+
+            get_function.assert_called_once()

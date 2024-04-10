@@ -60,3 +60,12 @@ class TestGithubOrgClient(unittest.TestCase):
                                  test_client.org["repos_url"])
 
             get_function.assert_called_once()
+
+    @parameterized.expand([({"license": {"key": "my_license"}}, "my_license"),
+                           ({"license": {"key": "other_license"}}, "my_license")])
+    def test_has_license(self, repo, license):
+        """
+        Testing license method of client module
+        """
+        has_license = repo['license']['key'] == license
+        self.assertEqual(GithubOrgClient.has_license(repo, license), has_license)

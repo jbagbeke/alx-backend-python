@@ -15,6 +15,9 @@ class TestGithubOrgClient(unittest.TestCase):
     @parameterized.expand([("google"), ("abc")])
     @patch('requests.get')
     def test_org(self, org_name, json_mock):
+        """
+        Testing org function of client module
+        """
         json_mock.return_value.json.return_value = "https://holberton.io"
 
         test_client = GithubOrgClient(org_name)
@@ -24,6 +27,9 @@ class TestGithubOrgClient(unittest.TestCase):
         json_mock.assert_called_once()
 
     def test_public_repos_url(self):
+        """
+        Test for _public_repos_url property function
+        """
         test_client = GithubOrgClient("google")
 
         with patch.object(GithubOrgClient,
@@ -34,6 +40,9 @@ class TestGithubOrgClient(unittest.TestCase):
                              "https://api.github.com/repos")
 
     def test_public_repos(self):
+        """
+        Testing public_repos function of client module
+        """
         with patch('client.get_json') as get_function:
             get_function.return_value = \
                 {"repos_url": "https://api.github.com/repos"}
